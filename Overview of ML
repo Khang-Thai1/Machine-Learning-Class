@@ -1,0 +1,10 @@
+# Assignment 1
+1. Machine Learning in my own words would be when code is able to do something that humans can't do in a reasonable amount of time. For example, searching through
+thousands of data to find something specific.
+
+2. The importance of data in machine learning is that without good, clean data, machine learning will not be useful.
+The data that we obtain is what is used to be able to get what we want. The better the data is and the more we have
+will allow us to make better assumptions. Patterns are also important because that is how the computer is able to 
+analyze the organized data and determine if a pattern exists. Patters help the programmer infer the answer to their problem.
+Accuracy ties into this as well. If the predictions are not accurate then its just a random guess but with machine learning, we can
+minimize the inaccuracy by using many different algorithms. 
