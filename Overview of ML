@@ -17,7 +17,11 @@ Both of these applications can not be built using traditional programming becaus
 data can not be manually coded. If everyone had the same face and fingerprint then traditional programming would work here but 
 since that isn't the case, Machine Learning is needed.
 
-5.
+5. Observation would be the rows of data. If a table has 5 rows of data then it would be called an observation. Just like observation, a feature would be for the 
+columns of the table. If a table had 5 columns then it would have 5 features. Among the data, there will be quantitative data which is data that is numerical. Data 
+that tells the numerical value of the feature. The qualitiative data would be something that only has 1
+finite set of values. For example, the number of tacos sold in a shop would be the qualitative data while the type of taco sold (Steak, Chicken, etc) would be the
+qualitative data.
 
 6.
 
