@@ -8,3 +8,19 @@ will allow us to make better assumptions. Patterns are also important because th
 analyze the organized data and determine if a pattern exists. Patters help the programmer infer the answer to their problem.
 Accuracy ties into this as well. If the predictions are not accurate then its just a random guess but with machine learning, we can
 minimize the inaccuracy by using many different algorithms. 
+
+3. In my opinion, AI and ML are similiar. Both AI and ML are learning through the use of data. ML is like a subsection of AI. AI would be 
+considered the big overarching topic and ML would be a branch of that because in essence, ML is AI.
+
+4. 2 Examples of modern machine learning applications would be something we use everyday on our smartphones. Touch ID and occasionally Face recognition.
+Both of these applications can not be built using traditional programming because everyone doesn't look the same and therefore 
+data can not be manually coded. If everyone had the same face and fingerprint then traditional programming would work here but 
+since that isn't the case, Machine Learning is needed.
+
+5.
+
+6.
+
+7.
+
+8.
