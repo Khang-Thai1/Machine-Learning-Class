@@ -17,7 +17,7 @@ The dataset for Classification can be found [here](https://github.com/Khang-Thai
 
 ## Assignment 4 - ML Algorithm from Scratch
 In this assignment I worked with Meinhard Capucao and we used the titantic dataset that was given to us to find the predictions and probabilities using logistic regression and Naive Bayes model. The dataset and code can be found below.
-The titanic dataset can be found [here]().
-The code for Logistic Regression can be found [here]().
-The code for Naive Bayes can be found [here]().
-The Documentation can be found [here]().
+The titanic dataset can be found [here](https://github.com/Khang-Thai1/Machine-Learning-Class/blob/main/titanic_project.csv).
+The code for Logistic Regression can be found [here](https://github.com/Khang-Thai1/Machine-Learning-Class/blob/main/logisticRegression.cpp).
+The code for Naive Bayes can be found [here](https://github.com/Khang-Thai1/Machine-Learning-Class/blob/main/naiveBayes.cpp).
+The Documentation can be found [here](https://github.com/Khang-Thai1/Machine-Learning-Class/blob/main/ML_Algorithms_from_Scratch.pdf).
