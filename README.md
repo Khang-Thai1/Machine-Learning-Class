@@ -23,7 +23,7 @@ The code for Naive Bayes can be found [here](https://github.com/Khang-Thai1/Mach
 The Documentation can be found [here](https://github.com/Khang-Thai1/Machine-Learning-Class/blob/main/ML_Algorithms_from_Scratch.pdf).
 
 ## Assignment 5 - Similarity 
-In this assignment, I worked in a group with [David Park](), [Jonathan Ho](), and [David Favela](), and used the diamond and airline data set from Assignment 3 to find the similarities using Linear Regression, Logistic Classification, Clustering and Dimensionality Reduction.
+In this assignment, I worked in a group with [David Park](https://github.com/d-park7), [Jonathan Ho](https://github.com/JHoGit1), and [David Favela](), and used the diamond and airline data set from Assignment 3 to find the similarities using Linear Regression, Logistic Classification, Clustering and Dimensionality Reduction.
 The Diamond Data we used can be found [here]().
 The Airplane Data can be found [here]().
 - [Linear Regression Notebook](https://github.com/Khang-Thai1/Machine-Learning-Class/blob/main/Linear%20Regression.pdf), [Linear Regression RMD](https://github.com/Khang-Thai1/Machine-Learning-Class/blob/main/Assignment_4_Linear_Regression.Rmd)
