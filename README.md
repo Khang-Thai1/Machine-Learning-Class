@@ -30,4 +30,5 @@ The Airplane Data can be found [here]().
 - [Logistic Regression Notebook](https://github.com/Khang-Thai1/Machine-Learning-Class/blob/main/Logistic%20Regression.pdf), [Logistic Regression RMD](https://github.com/Khang-Thai1/Machine-Learning-Class/blob/main/Assignment_4_Logistic_Regression.Rmd)
 - [Clustering Notebook](https://github.com/Khang-Thai1/Machine-Learning-Class/blob/main/Clustering.pdf), [Clustering RMD](https://github.com/Khang-Thai1/Machine-Learning-Class/blob/main/Assignment_4_Clustering.Rmd)
 - [Dimensionality Reduction Notebook](https://github.com/Khang-Thai1/Machine-Learning-Class/blob/main/Dimensionality%20Reduction.pdf), [Dimensionality Reduction RMD](https://github.com/Khang-Thai1/Machine-Learning-Class/blob/main/Assignment_4_Dimensionality_Reduction.Rmd)
+
 Our Narrative can be found [here](https://github.com/Khang-Thai1/Machine-Learning-Class/blob/main/Narrative.pdf)
