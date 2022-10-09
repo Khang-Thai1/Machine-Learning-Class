@@ -21,3 +21,13 @@ The titanic dataset can be found [here](https://github.com/Khang-Thai1/Machine-L
 The code for Logistic Regression can be found [here](https://github.com/Khang-Thai1/Machine-Learning-Class/blob/main/logisticRegression.cpp).
 The code for Naive Bayes can be found [here](https://github.com/Khang-Thai1/Machine-Learning-Class/blob/main/naiveBayes.cpp).
 The Documentation can be found [here](https://github.com/Khang-Thai1/Machine-Learning-Class/blob/main/ML_Algorithms_from_Scratch.pdf).
+
+## Assignment 5 - Similarity 
+In this assignment, I worked in a group with [David Park](), [Jonathan Ho](), and [David Favela](), and used the diamond and airline data set from Assignment 3 to find the similarities using Linear Regression, Logistic Classification, Clustering and Dimensionality Reduction.
+The Diamond Data we used can be found [here]().
+The Airplane Data can be found [here]().
+- [Linear Regression Notebook](https://github.com/Khang-Thai1/Machine-Learning-Class/blob/main/Linear%20Regression.pdf), [Linear Regression RMD](https://github.com/Khang-Thai1/Machine-Learning-Class/blob/main/Assignment_4_Linear_Regression.Rmd)
+- [Logistic Regression Notebook](https://github.com/Khang-Thai1/Machine-Learning-Class/blob/main/Logistic%20Regression.pdf), [Logistic Regression RMD](https://github.com/Khang-Thai1/Machine-Learning-Class/blob/main/Assignment_4_Logistic_Regression.Rmd)
+- [Clustering Notebook](https://github.com/Khang-Thai1/Machine-Learning-Class/blob/main/Clustering.pdf), [Clustering RMD](https://github.com/Khang-Thai1/Machine-Learning-Class/blob/main/Assignment_4_Clustering.Rmd)
+- [Dimensionality Reduction Notebook](https://github.com/Khang-Thai1/Machine-Learning-Class/blob/main/Dimensionality%20Reduction.pdf), [Dimensionality Reduction RMD](https://github.com/Khang-Thai1/Machine-Learning-Class/blob/main/Assignment_4_Dimensionality_Reduction.Rmd)
+Our Narrative can be found [here](https://github.com/Khang-Thai1/Machine-Learning-Class/blob/main/Narrative.pdf)
