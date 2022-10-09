@@ -1,0 +1,157 @@
+---
+title: "Linear Regression"
+author: "Khang Thai, David Park, Jonathan Ho, David Favela"
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+---
+
+## Reading in the Dataset
+```{r}
+DiamondDataset <- read.csv("diamonds.csv", header=TRUE)
+str(DiamondDataset)
+```
+
+## Create train & test sets
+```{r}
+library(caret)
+set.seed(1234)
+i <- sample(1:nrow(diamonds), .8*nrow(diamonds), replace=FALSE)
+train <- diamonds[i,]
+test <- diamonds[-i,]
+```
+
+```{r}
+library(tidyverse)
+df <- select(train, c('carat', 'price', 'x', 'y', 'z', 'depth' , 'table'))
+head(df)
+dim(train)
+summary(df)
+
+plot(train$price, train$carat, xlab = "Price", ylab = "Carat")
+plot(train$price, train$x, xlab = "Price", ylab = "Length")
+```
+
+## Plotting the data for Linear Regression
+```{r}
+df <- select(train, c('carat', 'price', 'x', 'y', 'z', 'depth' , 'table'))
+lm1 <- lm(carat ~., data = df)
+summary(lm1)
+par(mfrow=c(2,2))
+plot(lm1)
+```
+## Finding the correlation and MSE of Linear Regression
+```{r}
+lm2 <- lm(carat~depth+table+price+x+y, data = train)
+pred <- predict(lm2, newdata = test)
+cor_lm <- cor(pred, test$carat)
+mse_lm <- mean((pred - test$carat)^2)
+print(paste("Cor = ", cor_lm))
+print(paste("MSE = ", mse_lm))
+```
+## kNN regression and finding the Correlation and MSE
+```{r}
+fit <- knnreg(train[,6:10], train[,2],k = 3)
+knnPredict <- predict(fit, test[,6:10])
+cor_knn1 <- cor(knnPredict, test$carat)
+mse_knn1 <- mean((knnPredict - test$carat)^2)
+print(paste("Cor = ", cor_knn1))
+print(paste("MSE = ", mse_knn1))
+```
+## Scaling the data for kNN and finding the Correlation and MSE
+```{r}
+train_scaled <- train[,6:10]
+means <- sapply(train_scaled, mean)
+stdvs <- sapply(train_scaled, sd)
+train_scaled <- scale(train_scaled, center = means, scale = stdvs)
+test_scaled <- scale(test[,6:10], center = means, scale = stdvs)
+
+fit <- knnreg(train_scaled, train$carat,k = 3)
+knnPredict <- predict(fit, test_scaled)
+cor_knn2 <- cor(knnPredict, test$carat)
+mse_knn2 <- mean((knnPredict - test$carat)^2)
+print(paste("Cor = ", cor_knn2))
+print(paste("MSE = ", mse_knn2))
+
+```
+
+## Finding the best K value 
+```{r}
+cor_k <- rep(0,20)
+mse_k <- rep(0,20)
+i <- 1
+for (k in seq(1,39,2)) {
+  fit_k <- knnreg(train_scaled, train$carat, k = k)
+  pred_k <- predict(fit_k, test_scaled)
+  cor_k[i] <- cor(pred_k, test$carat)
+  mse_k[i] <- mean((pred_k - test$carat)^2)
+  print(paste("k= ", k, cor_k[i], mse_k[i]))
+  i <- i+1
+}
+
+```
+
+## Plotting Knn
+```{r}
+plot(1:20, cor_k, lwd = 2, col='red', ylab = "", yaxt='n')
+par(new=TRUE)
+plot(1:20, mse_k, lwd=2, col='blue', labels=FALSE, ylab="", yaxt='n')
+```
+
+## Stating the best K 
+```{r}
+print(paste("Best K in MSE = ", which.min(mse_k)))
+print(paste("Best K in Cor = ", which.max(cor_k)))
+```
+## Decision Tree
+```{r}
+library(tree)
+tree1 <- tree(carat~depth+table+price+x+y, data = train)
+summary(tree1)
+```
+## Finding the Correlation and RMSE of the Decision Tree
+```{r}
+pred <- predict(tree1, newdata = test)
+cor_tree <- cor(pred, test$carat)
+rmse_tree <- sqrt(mean((pred-test$carat)^2))
+
+print(paste('Correlation: ', cor_tree))
+print(paste('RMSE: ', rmse_tree))
+```
+## Plotting the Tree
+```{r}
+plot(tree1)
+text(tree1, cex=0.5,pretty=0)
+```
+## Plotting the Cross Validation 
+```{r}
+cv_tree <- cv.tree(tree1)
+plot(cv_tree$size, cv_tree$dev, type ='b')
+```
+## Plotting the Pruned tree
+```{r}
+tree_pruned <- prune.tree(tree1, best = 5)
+plot(tree_pruned)
+text(tree_pruned, pretty=0)
+```
+
+## Finding the Correlation and RMSE of pruned tree
+```{r}
+pred_pruned <- predict(tree_pruned, newdata = test)
+cor_pruned <- cor(pred_pruned, test$carat)
+rmse_pruned <- sqrt(mean((pred_pruned-test$carat)^2))
+print(paste("Cor of pruned tree = ", cor_pruned))
+print(paste("RMSE of pruned tree = ", rmse_pruned))
+```
+
+## Comparing the Results
+
+Using Linear Regression, we achieved a 98% correlation between Carat and Price, X, Y, Z, Table, and Depth of the diamond. Using kNN we were able to achieve a 94% correlation and after we scaled it, we got a 99% accuracy between the Carat and the same predictors. Using Decision Trees, we achieved a 98% correlation and after pruning the tree we got a 97% correlation. We used the same test and train data set for all 3 tests. In the end it seems that using kNN and scaling it is the best predictor for our diamonds data set. 
+
+
+## How Results Were Achieved?
+
+According to the first plot, we can see that for the most part aside from a few outliers, the price of a diamond will increase as the carat increases. Other factors might be the reason for the price and carat alone is not the main reason for price. In the second plot, we see that Length of the diamond also influence the price so if both of these were predictors, the accuracy of the price prediction will be better. In kNN we used carat, table, length(x), width(y), depth(z), and depth total percentage to determine the price. As we added more predictors, the correlation was lower, but after we scaled it, the correlation was higher than the linear regression correlation. We used decision trees as well and it showed that there was an improvement even though it was a small one, however it seems that decision trees lowered the correlation predictions when pruned. I think that the reason the tree failed to come up with a better correlation is because there was not a categorical way for the data to be split without having a huge tree.  
+
+

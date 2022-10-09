@@ -1,0 +1,123 @@
+---
+title: "Logistic Regression"
+author: "Khang Thai, David Park, Jonathan Ho, David Favela"
+output:
+  html_document:
+    df_print: paged
+---
+
+
+## Reading in the Dataset
+```{r}
+Invistico_Airline <- read.csv("Invistico_Airline.csv", header=TRUE)
+str(Invistico_Airline)
+```
+
+
+## Convert satisfaction into a factor
+```{r}
+Invistico_Airline$satisfaction <- as.factor(Invistico_Airline$satisfaction)
+```
+
+
+## Create New Columns Rating Sum & Rating Mean
+```{r}
+Invistico_Airline$ratingSum <- as.numeric(apply(Invistico_Airline[,8:21], 1, sum))
+Invistico_Airline$ratingMean <- c(Invistico_Airline$ratingSum/14)
+```
+
+## Create train & test sets
+```{r}
+set.seed(3)
+i <- sample(1:nrow(Invistico_Airline), 0.8*nrow(Invistico_Airline), replace = FALSE)
+trainAirline <- Invistico_Airline[i,]
+testAirline <- Invistico_Airline[-i,]
+```
+
+## Clean out columns not needed
+```{r}
+trainAirline <- trainAirline[,c(4,7,25,1)]
+testAirline <- testAirline[,c(4,7,25,1)]
+```
+
+## Plotting the dataset based on Age and RatingMean
+```{r}
+plot(trainAirline$Age, trainAirline$ratingMean, pch=21, bg=c("red","yellow")
+     [unclass(trainAirline$satisfaction)])
+```
+
+
+## Create a Logistic Regression Model
+```{r}
+glm1 <- glm(satisfaction~., data=trainAirline, family=binomial)
+summary(glm1)
+```
+
+## Test the Logistic Model
+```{r}
+probs <- predict(glm1, newdata = testAirline, type="response")
+pred <- ifelse(probs>0.5,2,1)
+acc1 <- mean(pred==as.integer(testAirline$satisfaction))
+print(paste("glm1 accuracy = ", acc1))
+table(pred, as.integer(testAirline$satisfaction))
+```
+row 1 = total satisfied 
+row 2 = total unsatisfied
+
+row 1, col 1 = True Pos
+row 1, col 2 = False Pos
+row 2, col 1 = False Neg
+row 2, col 2 = True Neg
+
+
+## Graph for average rating depending on if it the user was satisfied or not
+```{r}
+par(mfrow=c(1,2))
+plot(trainAirline$satisfaction, trainAirline$ratingMean, main="Average Rating", ylab="", varwidth=TRUE)
+plot(trainAirline$satisfaction, trainAirline$Age, main="Average Age", ylab="", varwidth=TRUE)
+```
+
+
+## knn Classification
+```{r}
+library(class)
+str(trainAirline)
+
+airline_pred <- knn(train=trainAirline[,c(1,3)], test = testAirline[,c(1,3)], cl = trainAirline[,4], k=3)
+
+```
+
+## Predicting Satisfaction and finding the True/False Positives and Negatives
+```{r}
+results <- airline_pred == testAirline$satisfaction
+acc <- length(which(results==TRUE))/ length(results)
+table(results, airline_pred)
+acc
+```
+## Decision Tree Regression
+```{r}
+library(tree)
+tree_airline <- tree(satisfaction~., data=trainAirline)
+tree_airline
+summary(tree_airline)
+
+plot(tree_airline)
+text(tree_airline, cex=0.75, pretty = 0)
+
+pred <- predict(tree_airline, newdata = testAirline, type = "class")
+table(pred, testAirline$satisfaction)
+mean(pred==testAirline$satisfaction)
+```
+
+
+
+## Comparing the results
+
+The logistic regression model gave us a 0.7311 accuracy on the test data used. The KNN model created gave us slightly higher 0.7334 accuracy. The models were created using the airline data and the same train and test data sets were used. Looking into the tables, we can see that the KNN model has slightly lower true satisfied predictions but had higher true dissatisfied predictions, making it slightly more accurate than the logistic regression model.
+
+
+## How Results Were Achieved?
+
+The logistic regression model created weights and adjusts them as data is being fed and the algorithm is run. From the statistic graphs that we made, we can clearly see there are some differences in the data that will contribute to the model, such as more dissatisfied uses giving lower ratings and those that are of older age being more satisfied with their airline. The KNN model decides depending on the proximity and relation with the neighboring points, and the values those points have. The graph demonstrating the plots of satisfied and unsatisfied uses that has rating as a Y-label and age as an X-label displays a trend that most people that are dissatisfied give out lower ratings. This hypothesis was also proven as we got a higher than 0.7 accuracy.
+
+

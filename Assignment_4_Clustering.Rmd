@@ -1,0 +1,96 @@
+---
+title: "Clustering"
+author: "Khang Thai, David Park, Jonathan Ho, David Favela"
+output:
+  html_document:
+    df_print: paged
+---
+
+## Reading in the Dataset
+```{r}
+airlineClusterData <- read.csv("Invistico_Airline.csv", header=TRUE)
+str(airlineClusterData)
+```
+
+## Convert satisfaction into a factor
+```{r}
+airlineClusterData$satisfaction <- as.factor(airlineClusterData$satisfaction)
+```
+
+## Create New Columns Rating Sum & Rating Mean
+```{r}
+airlineClusterData$ratingSum <- as.numeric(apply(airlineClusterData[,8:21], 1, sum))
+airlineClusterData$ratingMean <- c(airlineClusterData$ratingSum/14)
+```
+
+## Selecting which columns to use
+```{r}
+airlineClusterData <- airlineClusterData[,c(4,25,1)]
+```
+
+## kNN Clustering
+```{r}
+set.seed(3)
+airlineCluster <- kmeans(airlineClusterData[,1,3],2,nstart = 20)
+airlineCluster
+```
+## Printing out the table to show true/false Positive or Negative
+```{r}
+table(airlineCluster$cluster, airlineClusterData$satisfaction)
+```
+## 2 is satisfied and 1 is unsatisfied
+
+## Plotting the data based on Rating mean and Age 
+```{r}
+plot(airlineClusterData$Age, airlineClusterData$ratingMean, pch=21, bg=c("red", "yellow", "blue")[unclass(airlineCluster$cluster)], main = "Airline Data")
+```
+
+## Hierarchical Clustering
+```{r}
+library(flexclust)
+
+airlineClusterData$satisfaction <- as.numeric(as.factor(airlineClusterData$satisfaction)) 
+str(airlineClusterData)
+airline.scaled <- scale(airlineClusterData)
+head(airline.scaled)
+
+```
+
+```{r}
+i <- sample(1:nrow(airlineClusterData), 0.9999*nrow(airlineClusterData), replace=FALSE)
+testAirline <- airlineClusterData[-i,]
+
+dist <- dist(testAirline)
+hcl <- hclust(dist, method="average")
+plot(hcl, hang=-1, cex=.8, main="Hierarchiacal Clustering")
+```
+## Cutting the Dendogram and finding best index.
+```{r}
+library(NbClust)
+testAirline$satisfaction <- "Satisfied"
+testAirline$satisfaction[5] <- "Disatisfied"
+testAirline$satisfaction[7:8] <- "Disatisfied"
+testAirline$satisfaction[10] <- "Disatisfied"
+
+for (c in 1:13) {
+  cluster_cut <- cutree(hcl, c)
+  table_cut <- table(cluster_cut, testAirline$satisfaction)
+  print(table_cut)
+  ri <- randIndex(table_cut)
+  print(paste("cut= ", c, "Rand Index = ", ri))
+}
+```
+
+## Generating the different types of plots for model based clustering 
+```{r}
+library(mclust)
+fit <- mclustBIC(airlineClusterData)
+
+plot(fit) 
+summary(fit) 
+
+```
+
+## Comparing the Results
+When we did clustering, we printed out a table that shows the True/False satisfied/dissatisfied of the data set. We then plotted the data to showcase that at around the age of 40, most customers will be satisfied with the airline while those under 40 will be unsatisfied. When we did hierarchical clustering, we had to subset the data to fit the dendrogram. After that we had to cut the dendrogram to find out the best Index which was 0.1. This indicates that our data set is not very good for clustering. Using based model clustering also revealed that our data set isn't viable for clustering 
+

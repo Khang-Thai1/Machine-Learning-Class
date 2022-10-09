@@ -1,0 +1,107 @@
+---
+title: "Dimensionality Reduction"
+author: "Khang Thai, David Park, Jonathan Ho, David Favela"
+output: html_document
+
+---
+
+
+## Reading in the Dataset
+```{r}
+library(caret)
+Invistico_Airline <- read.csv("Invistico_Airline.csv", header=TRUE)
+str(Invistico_Airline)
+```
+## Convert satisfaction into a factor
+```{r}
+Invistico_Airline$satisfaction <- as.factor(Invistico_Airline$satisfaction)
+```
+
+## Create New Columns Rating Sum & Rating Mean
+```{r}
+Invistico_Airline$ratingSum <- as.numeric(apply(Invistico_Airline[,8:21], 1, sum))
+Invistico_Airline$ratingMean <- c(Invistico_Airline$ratingSum/14)
+```
+
+## Create train & test sets
+```{r}
+i <- sample(1:nrow(Invistico_Airline), 0.8*nrow(Invistico_Airline), replace = FALSE)
+trainAirline <- Invistico_Airline[i,]
+testAirline <- Invistico_Airline[-i,]
+set.seed(3)
+```
+
+## Clean out columns not needed
+```{r}
+trainAirline <- trainAirline[,c(4,7,25,1)]
+testAirline <- testAirline[,c(4,7,25,1)]
+```
+
+## PCA
+```{r}
+pca_out <- preProcess(trainAirline[,1:3], method=c("center", "scale", "pca"))
+pca_out
+```
+## Plotting the PCA with the Test Data
+```{r}
+train_pc <- predict(pca_out, trainAirline[,1:3])
+test_pc <- predict(pca_out, testAirline[,])
+plot(test_pc$PC1, test_pc$PC2, pch=c(23,21,22)[unclass(test_pc$satisfaction)], bg=c("red", "green", "blue")[unclass(testAirline$satisfaction)])
+```
+## Finding the accuracy of PCA
+```{r}
+train_df <- data.frame(train_pc$PC1, train_pc$PC2,  trainAirline$satisfaction)
+test_df <- data.frame(test_pc$PC1, test_pc$PC2, testAirline$satisfaction)
+library(class)
+
+pred <- knn(train = train_df[,1:2], test = test_df[,1:2], cl=train_df[,3], k=3)
+mean(pred==testAirline$satisfaction)
+```
+## Regression comparison to PCA
+```{r}
+glm1 <- glm(satisfaction~., data=trainAirline, family=binomial)
+```
+
+```{r}
+probs <- predict(glm1, newdata = testAirline, type="response")
+pred <- ifelse(probs>0.5,2,1)
+acc1 <- mean(pred==as.integer(testAirline$satisfaction))
+print(paste("glm1 accuracy = ", acc1))
+
+
+```
+## Results
+The amount of accuracy lost from Regression to PCA was about 5% accuracy. Regression had a 73% accuracy while PCA had a 68% accuracy.
+
+## LDA
+```{r}
+library(MASS)
+lda1 <- lda(satisfaction~., data=trainAirline)
+lda1$means
+```
+## Predicting the satisfaction based on the test data
+```{r}
+lda_pred <- predict(lda1, newdata=testAirline, type="class")
+head(lda_pred$class)
+```
+## Regression Comparison to LDA
+```{r}
+glm1 <- glm(satisfaction~., data=trainAirline, family=binomial)
+```
+
+```{r}
+probs <- predict(glm1, newdata = testAirline, type="response")
+pred <- ifelse(probs>0.5,2,1)
+acc1 <- mean(pred==as.integer(testAirline$satisfaction))
+print(paste("glm1 accuracy = ", acc1))
+table(pred, as.integer(testAirline$satisfaction))
+```
+
+```{r}
+mean(lda_pred$class==testAirline$satisfaction)
+```
+
+## Results
+Here, the accuracy for LDA was 73.44% while the accuracy of regression was 73.49% so the amount of accuracy lost was only .05%.
+
+
