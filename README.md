@@ -11,12 +11,12 @@ This is the [portfolio](https://github.com/Khang-Thai1/Machine-Learning-Class/bl
 I coded in C++ using Clion to find the mean, median, range, correlation, and covariance of the dataset that was given. The document of my experiance is given [here](https://github.com/Khang-Thai1/Machine-Learning-Class/blob/main/Assignment%202.pdf) and my code for this project is given [here](https://github.com/Khang-Thai1/Machine-Learning-Class/blob/main/main.cpp)
 
 ### Assignment 3 - Linear Models
-In this assignment I worked with Meinhard Capucao and we used a quantitative dataset and qualitative dataset to be able to generate a Linear Regression model, a Logistic Regression model, and a Bayes model. 
+In this assignment I worked with [Meinhard Capucao](https://github.com/meintgl) and we used a quantitative dataset and qualitative dataset to be able to generate a Linear Regression model, a Logistic Regression model, and a Bayes model. 
 The dataset for Linear Regression modle can be found [here](https://github.com/Khang-Thai1/Machine-Learning-Class/blob/main/diamonds.csv). The notebook for Regression can be found [here](https://github.com/Khang-Thai1/Machine-Learning-Class/blob/main/Regression.pdf) along with the code [here](https://github.com/Khang-Thai1/Machine-Learning-Class/blob/main/Regression.Rmd)
 The dataset for Classification can be found [here](https://github.com/Khang-Thai1/Machine-Learning-Class/blob/main/Invistico_Airline.csv). The notebook for the Classification can be found [here](https://github.com/Khang-Thai1/Machine-Learning-Class/blob/main/Classification.pdf) and code [here](https://github.com/Khang-Thai1/Machine-Learning-Class/blob/main/Classification.Rmd).
 
 ### Assignment 4 - ML Algorithm from Scratch
-In this assignment I worked with Meinhard Capucao and we used the titantic dataset that was given to us to find the predictions and probabilities using logistic regression and Naive Bayes model. The dataset and code can be found below.
+In this assignment I worked with [Meinhard Capucao](https://github.com/meintgl) and we used the titantic dataset that was given to us to find the predictions and probabilities using logistic regression and Naive Bayes model. The dataset and code can be found below.
 The titanic dataset can be found [here](https://github.com/Khang-Thai1/Machine-Learning-Class/blob/main/titanic_project.csv).
 The code for Logistic Regression can be found [here](https://github.com/Khang-Thai1/Machine-Learning-Class/blob/main/logisticRegression.cpp).
 The code for Naive Bayes can be found [here](https://github.com/Khang-Thai1/Machine-Learning-Class/blob/main/naiveBayes.cpp).
@@ -34,7 +34,7 @@ The Airplane Data can be found [here](https://github.com/Khang-Thai1/Machine-Lea
 Our Narrative can be found [here](https://github.com/Khang-Thai1/Machine-Learning-Class/blob/main/Narrative.pdf)
 
 ### Assignment 6 - Kernel and Ensemble
-In this assignment, I worked with Meinhard Capucao and we used 2 different datasets, Diamonds and Credit Card, to find the Linear SVM, Classification SVM, Random Forest, and XGBoost. 
+In this assignment, I worked with [Meinhard Capucao](https://github.com/meintgl) and we used 2 different datasets, Diamonds and Credit Card, to find the Linear SVM, Classification SVM, Random Forest, and XGBoost. 
 The dataset for Diamonds can be found [here](https://github.com/Khang-Thai1/Machine-Learning-Class/blob/main/diamonds.csv)
 The dataset for Credit Card can be found [here](https://www.dropbox.com/home?preview=creditcard.csv). Our dataset was bigger than 25 mb for Github so I uploaded it to Dropbox.
 - [Linear SVM Notebook](https://github.com/Khang-Thai1/Machine-Learning-Class/blob/main/Assignment%206/SVM%20Regression.pdf), [Linear SVM RMD](https://github.com/Khang-Thai1/Machine-Learning-Class/blob/main/Assignment%206/Assignment6.Rmd)
