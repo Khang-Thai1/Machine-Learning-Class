@@ -41,4 +41,4 @@ The dataset for Credit Card can be found [here](https://www.dropbox.com/home?pre
 - [Classification SVM Notebook](https://github.com/Khang-Thai1/Machine-Learning-Class/blob/main/Assignment%206/svm_classification.pdf), [Classification RMD](https://github.com/Khang-Thai1/Machine-Learning-Class/blob/main/Assignment%206/svm_classification.Rmd)
 - [Ensemble Notebook](https://github.com/Khang-Thai1/Machine-Learning-Class/blob/main/Assignment%206/ensemble.pdf), [Ensemble RMD](https://github.com/Khang-Thai1/Machine-Learning-Class/blob/main/Assignment%206/ensemble.Rmd)
 
-Our Narrative can be found [here](https://github.com/Khang-Thai1/Machine-Learning-Class/blob/main/Assignment%206/SVM%20and%20Ensemble%20Analysis.pdf).
+Our Narrative can be found [here](https://github.com/Khang-Thai1/Machine-Learning-Class/blob/main/Assignment%206/SVM%20and%20Ensemble%20Analysis%20(1).pdf).
