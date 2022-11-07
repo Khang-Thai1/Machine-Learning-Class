@@ -42,3 +42,9 @@ The dataset for Credit Card can be found [here](https://www.dropbox.com/home?pre
 - [Ensemble Notebook](https://github.com/Khang-Thai1/Machine-Learning-Class/blob/main/Assignment%206/ensemble.pdf), [Ensemble RMD](https://github.com/Khang-Thai1/Machine-Learning-Class/blob/main/Assignment%206/ensemble.Rmd)
 
 Our Narrative can be found [here](https://github.com/Khang-Thai1/Machine-Learning-Class/blob/main/Assignment%206/SVM%20and%20Ensemble%20Analysis%20(1).pdf).
+
+### Assignment 7 - ML with sklearn
+In this assignment, we were given a dataset and were given instructions on how to manipulate the data to obtain results of correlation.
+
+The data we were given was called [Auto.csv](https://github.com/Khang-Thai1/Machine-Learning-Class/blob/main/Auto.csv).
+My pdf of the assignment can be found [here](https://github.com/Khang-Thai1/Machine-Learning-Class/blob/main/Assignment7.pdf)
